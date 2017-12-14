@@ -73,5 +73,23 @@ namespace Recursive_subroutine_program
         public static FileStream Fs;        //输入文件流
         public static string TokenBuffer;     //记号字符缓冲
 
+        public static void enter(string x)
+        {
+            Console.WriteLine("Enter in " + x + "\n");
+        }
+        public static void back(string x)
+        {
+            Console.WriteLine("Exit from " + x + "\n");
+        }
+
+        public static void Tree_trace(ExprNode x)
+        {
+            parser.PrintSyntaxTree(x,1);
+        }
+
+        public static void call_match(string x)
+        {
+            Console.WriteLine("matchtoken    " + x + "\n");
+        }
     }
 }
