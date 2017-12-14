@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Recursive_subroutine_program" t="IncludeRecursive">
+        <e p="App.config" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Common.cs" t="Include" />
+        <e p="ExprNode.cs" t="Include" />
+        <e p="obj" t="ExcludeRecursive" />
+        <e p="parser.cs" t="Include" />
+        <e p="Program.cs" t="Include" />
+        <e p="Properties" t="Include">
+          <e p="AssemblyInfo.cs" t="Include" />
+        </e>
+        <e p="Recursive_subroutine_program.csproj" t="IncludeRecursive" />
+        <e p="Scanner.cs" t="Include" />
+        <e p="Token.cs" t="Include" />
+      </e>
+      <e p="Recursive_subroutine_program.sln" t="IncludeFlat" />
+    </e>
+    <e p="$USER_HOME$/Library/Caches/Rider2017.2/resharper-host/local/Transient/ReSharperHost/v10/SolutionCaches/_Recursive_subroutine_program.-787520306.00" t="ExcludeRecursive" />
+  </component>
+</project>
