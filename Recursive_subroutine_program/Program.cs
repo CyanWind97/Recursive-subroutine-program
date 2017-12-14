@@ -32,6 +32,8 @@ namespace Recursive_subroutine_program
 //            Console.WriteLine("____________________________________________");
 //            Common.CloseScanner();
 //            Console.ReadKey();
+            
+            //实例化parser或者把Parser方法改成静态才能调用
             parser tParser = new parser();
             if (args.Length < 1)
             {
