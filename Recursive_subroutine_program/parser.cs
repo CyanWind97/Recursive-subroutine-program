@@ -49,6 +49,7 @@ namespace Recursive_subroutine_program
 
         #region assist function
 
+        // 通过词法分析器接口GetToken获取一个记号
         static void FetchToken()
         {
             token = Scanner.GetToken();
@@ -59,6 +60,7 @@ namespace Recursive_subroutine_program
             }
         }
 
+        //匹配记号
         static void MatchToken(Common.Token_Type The_Token)
         {
             if (token.type != The_Token)
@@ -69,6 +71,7 @@ namespace Recursive_subroutine_program
             FetchToken();
         }
 
+        //语法错误处理
         static void SyntaxError(int case_of)
         {
             switch (case_of)
@@ -79,6 +82,7 @@ namespace Recursive_subroutine_program
             }
         }
 
+        //打印错误信息
         static void ErrMsg(uint LineNo, string descrip, string str)
         {
 //#if PARSER_DEBUG
@@ -93,6 +97,7 @@ namespace Recursive_subroutine_program
             return;
         }
 
+        //先序遍历并打印表达式的语法树
         public static void PrintSyntaxTree(ExprNode root, int indent)
         {
             int temp;
@@ -128,7 +133,7 @@ namespace Recursive_subroutine_program
         #endregion
 
         #region non-terminal subroutine
-
+        //绘图语言解释器入口
         public void Parser(String SrcFilePtr)
         {
             Common.enter("Parser");
@@ -144,6 +149,7 @@ namespace Recursive_subroutine_program
             return;
         }
 
+        // Program的递归子程序
         public static void Program()
         {
             Common.enter("Program");
@@ -155,6 +161,7 @@ namespace Recursive_subroutine_program
             Common.back("Program");
         }
 
+        //Statement的递归子程序
         public static void Statement()
         {
             Common.enter("Statement");
@@ -174,6 +181,7 @@ namespace Recursive_subroutine_program
             Common.back("Statement");
         }
 
+        //OriginStatement的递归子程序
         static void OriginStatement()
         {
             ExprNode tmp = new ExprNode();
@@ -186,6 +194,7 @@ namespace Recursive_subroutine_program
             Common.back("OriginStatement");
         }
 
+        //ScaleStatement的递归子程序
         static void ScaleStatement()
         {
             ExprNode tmp;
@@ -198,6 +207,7 @@ namespace Recursive_subroutine_program
             Common.back("ScaleStatement");
         }
 
+        //RotStatement的递归子程序
         static void RotStatement()
         {
             ExprNode tmp;
@@ -208,6 +218,7 @@ namespace Recursive_subroutine_program
             Common.back("RotStatement");
         }
 
+        //ForStatement的递归子程序
         static void ForStatement()
         {
             ExprNode start, end, step, x, y;
@@ -237,13 +248,14 @@ namespace Recursive_subroutine_program
             Common.back("ForStatement");
         }
 
+        //Expression的递归子程序
         static ExprNode Expression()
         {
-            ExprNode left = new ExprNode(), right;
+            ExprNode left , right;
             Common.Token_Type token_tmp;
             
             Common.enter("Expression");
-            
+            left = Term();
             while (token.type == Common.Token_Type.PLUS || token.type == Common.Token_Type.DIV)
             {
                 token_tmp = token.type;
@@ -256,11 +268,13 @@ namespace Recursive_subroutine_program
             return left;
         }
 
+        //Term的递归子程序
         static ExprNode Term()
         {
-            ExprNode left = new ExprNode(), right;
+            ExprNode left, right;
             Common.Token_Type token_tmp;
 
+            left = Factor();
             while (token.type == Common.Token_Type.MUL || token.type == Common.Token_Type.DIV)
             {
                 token_tmp = token.type;
@@ -271,6 +285,7 @@ namespace Recursive_subroutine_program
             return left;
         }
 
+        //Factor的递归子程序
         static ExprNode Factor()
         {
             ExprNode left, right;
@@ -295,6 +310,7 @@ namespace Recursive_subroutine_program
             return right;
         }
 
+        //Component的递归子程序
         static ExprNode Component()
         {
             ExprNode left, right;
@@ -309,6 +325,7 @@ namespace Recursive_subroutine_program
             return left;
         }
 
+        //Atom的递归子程序
         static ExprNode Atom()
         {
             Token t = token;
@@ -345,7 +362,7 @@ namespace Recursive_subroutine_program
         #endregion
         
         #region Gramma Constructor
-
+        //生成语法树的一个节点
         static ExprNode MakeExprNode(Common.Token_Type opcode, params Object[] exprNodes)
         {
             ExprNode ExprPtr = new ExprNode();
@@ -356,7 +373,7 @@ namespace Recursive_subroutine_program
                     ExprPtr.CaseConst = (double) exprNodes[0];
                     break;
                 case Common.Token_Type.T:
-                    ExprPtr.CaseParmPtr = (double) exprNodes[0];// can find &Parameter in C#
+                   // ExprPtr.CaseParmPtr = double.Parse((string)exprNodes[0]);// can find &Parameter in C#
                     break;
                 case Common.Token_Type.FUNC:
                     ExprPtr.MathFuncPtr = (Common.FuncPtr) exprNodes[0];

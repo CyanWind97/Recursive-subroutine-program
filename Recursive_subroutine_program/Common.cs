@@ -5,6 +5,8 @@ namespace Recursive_subroutine_program
 {
     public static class Common
     {
+        #region scanner part
+
         // 记号的类别，共22个
         public enum Token_Type                 
         {
@@ -73,6 +75,10 @@ namespace Recursive_subroutine_program
         public static FileStream Fs;        //输入文件流
         public static string TokenBuffer;     //记号字符缓冲
 
+        #endregion
+
+        #region parser part
+
         public static void enter(string x)
         {
             Console.WriteLine("Enter in " + x + "\n");
@@ -91,5 +97,13 @@ namespace Recursive_subroutine_program
         {
             Console.WriteLine("matchtoken    " + x + "\n");
         }
+
+        #endregion
+
+        #region semantic part
+
+        
+
+        #endregion
     }
 }
