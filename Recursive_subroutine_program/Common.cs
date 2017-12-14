@@ -23,7 +23,7 @@ namespace Recursive_subroutine_program
             ERRTOKEN              // 出错记号（非法输入）
         };
 
-        public delegate double FuncPtr(double a);
+        public delegate double FuncPtr(double a); //函数指针(代理)
 
         public static Token[] TokenTab =
         {

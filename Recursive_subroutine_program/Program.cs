@@ -23,8 +23,8 @@ namespace Recursive_subroutine_program
                 Console.ReadKey();
                 return;
             }
-            Console.WriteLine("记号类别    字符串      常数值      函数指针"); ;
-            Console.WriteLine("____________________________________________");
+            Console.WriteLine("记号类别    字符串      常数值              函数指针"); ;
+            Console.WriteLine("_________________________________________________");
             while (true)
             {
                 token = Common.GetToken();     // 通过词法分析器获得一个记号
