@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Recursive_subroutine_program
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args) //通过命令行参数把test.txt的路径加入，否则在输入时可能会有一些bug
         {
             Token token = new Token();
             if (args.Length < 1)
@@ -23,7 +19,7 @@ namespace Recursive_subroutine_program
                 Console.ReadKey();
                 return;
             }
-            Console.WriteLine("记号类别    字符串      常数值              函数指针"); ;
+            Console.WriteLine("记号类别    字符串      常数值              函数指针");
             Console.WriteLine("_________________________________________________");
             while (true)
             {
@@ -32,7 +28,7 @@ namespace Recursive_subroutine_program
                     Console.WriteLine("{0,-12} {1,-9} {2:f7} {3:12}",
                         token.type, token.lexeme, token.value, token.func);
                 else break;         // 源程序结束，退出循环
-            };
+            }
             Console.WriteLine("____________________________________________");
             Common.CloseScanner();
             Console.ReadKey();
