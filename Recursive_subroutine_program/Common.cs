@@ -102,8 +102,6 @@ namespace Recursive_subroutine_program
 
         #region semantic part
 
-        public static int b;
-
         #endregion
     }
 }
