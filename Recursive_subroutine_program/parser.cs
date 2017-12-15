@@ -339,7 +339,7 @@ namespace Recursive_subroutine_program
                         break;
                     case Common.Token_Type.T:
                         MatchToken(Common.Token_Type.T);
-                        address = MakeExprNode(Common.Token_Type.T);
+                        address = MakeExprNode(Common.Token_Type.T, token.value);//将token的value(double)
                         break;
                     case Common.Token_Type.FUNC:
                         MatchToken(Common.Token_Type.FUNC);
@@ -374,6 +374,7 @@ namespace Recursive_subroutine_program
                     break;
                 case Common.Token_Type.T:
                    // ExprPtr.CaseParmPtr = double.Parse((string)exprNodes[0]);// can find &Parameter in C#
+                    ExprPtr.CaseParmPtr = (double)exprNodes[0];
                     break;
                 case Common.Token_Type.FUNC:
                     ExprPtr.MathFuncPtr = (Common.FuncPtr) exprNodes[0];
