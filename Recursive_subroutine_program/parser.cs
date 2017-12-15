@@ -346,6 +346,7 @@ namespace Recursive_subroutine_program
                         MatchToken(Common.Token_Type.L_BRACKET);
                         tmp = Expression();
                         address = MakeExprNode(Common.Token_Type.FUNC, t.func, tmp);
+                        MatchToken(Common.Token_Type.R_BRACKET);
                         break;
                     case Common.Token_Type.L_BRACKET:
                         MatchToken(Common.Token_Type.L_BRACKET);
