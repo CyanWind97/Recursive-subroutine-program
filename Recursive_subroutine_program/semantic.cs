@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-
+using System.Windows.Forms;
 using System.Windows.Media;
 using LiveCharts;
 using LiveCharts.Defaults;
@@ -12,12 +12,12 @@ using LiveCharts.Wpf;
 
 namespace Recursive_subroutine_program
 {
-    class semantic 
+    public static class semantic 
     {
         public static double Parameter, Origin_x, Origin_y, Scale_x, Scale_y, Rot_angle;
         
         //计算表达式的值
-        double GetExprValue(ExprNode root)
+        public static double GetExprValue(ExprNode root)
         {
             if (root == null)
                 return 0;
@@ -45,22 +45,24 @@ namespace Recursive_subroutine_program
             };
 
         }
-        /*void DrawPixel(ulong x, ulong y)
+
+        public static void DrawPixel(ulong x, ulong y)
         {
+            Point point = new Point((int)x, (int)y);
+        }
 
-        }*/
 
-
-           
-
-        
 
         //循环绘制点坐标
-        void DrawLoop(double Start, double End, double Step, ExprNode HorPtr, ExprNode VerPtr)
+        public static void DrawLoop(double Start, double End, double Step, ExprNode HorPtr, ExprNode VerPtr)
         {
             double Parameter;
-            double x, y;
-            for(Parameter = Start; Parameter <= End; Parameter += Step)
+            double x = 0.0, y = 0.0;
+
+            Control control = new Control();
+            Graphics formGraphics = control.CreateGraphics();
+
+            for (Parameter = Start; Parameter <= End; Parameter += Step)
             {
                 CalcCoord(HorPtr, VerPtr, ref x, ref y);
                 DrawPixel((ulong)x, (ulong)y);
@@ -68,9 +70,9 @@ namespace Recursive_subroutine_program
         }
 
         //删除一棵语法树
-        void DelExprTree(ExprNode root)
+        public static void DelExprTree(ExprNode root)
         {
-            if (root.OpCode == null) return;
+            if (root == null) return;
             switch(root.OpCode)
             {
                 case Common.Token_Type.PLUS:  //两个孩子的内部节点
@@ -88,14 +90,17 @@ namespace Recursive_subroutine_program
                     break;
             }
             //delete(root);//删除节点
+            root = null;
         }
 
-        static void Errmsg(string str)
+        //出错处理
+        public static void Errmsg(string str)
         {
             //exit(1);
+
         }
 
-        static void CalcCoord(ExprNode Hor_Exp, ExprNode Ver_Exp, ref double Hor_x, ref double Ver_y)
+        public static void CalcCoord(ExprNode Hor_Exp, ExprNode Ver_Exp, ref double Hor_x, ref double Ver_y)
         {
             double HorCord, VerCord, Hor_tmp;
             //计算表达式的值，得到点的原始坐标
@@ -116,16 +121,7 @@ namespace Recursive_subroutine_program
             Ver_y = VerCord;
         }
 
-        LiveCharts.SeriesCollection series = new LiveCharts.SeriesCollection
-        {
-            new ScatterSeries
-            {
-                Values = new ChartValues<ScatterPoint>
-                {
-                    new ScatterPoint(5, 5, 20);
-                };
-            }
-        }
+        
 
     }
 }

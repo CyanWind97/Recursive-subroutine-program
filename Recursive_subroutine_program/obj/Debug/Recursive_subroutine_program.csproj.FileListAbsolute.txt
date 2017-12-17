@@ -16,3 +16,15 @@ E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_p
 E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\obj\Debug\Recursive_subroutine_program.exe
 E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\obj\Debug\Recursive_subroutine_program.pdb
 E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\obj\Debug\Recursive_subroutine_program.csprojResolveAssemblyReference.cache
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\Recursive_subroutine_program.exe
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\Recursive_subroutine_program.pdb
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\LiveCharts.dll
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\LiveCharts.WinForms.dll
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\LiveCharts.Wpf.dll
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\System.Drawing.Primitives.dll
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\LiveCharts.pdb
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\LiveCharts.xml
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\LiveCharts.WinForms.pdb
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\LiveCharts.WinForms.xml
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\LiveCharts.Wpf.pdb
+E:\学校相关\编译原理\Recursive_subroutine_program\Recursive_subroutine_program\bin\Debug\LiveCharts.Wpf.xml

@@ -102,6 +102,7 @@ namespace Recursive_subroutine_program
 
         #region semantic part
 
+        /*
         //绘制一个点
         public static void DrawPixel(ulong x, ulong y)
         {
@@ -122,7 +123,7 @@ namespace Recursive_subroutine_program
         {
 
         }
-
+        */
 
         #endregion
     }
