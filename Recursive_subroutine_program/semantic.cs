@@ -12,7 +12,7 @@ using LiveCharts.Wpf;
 
 namespace Recursive_subroutine_program
 {
-    public static class semantic 
+    public static class semantic
     {
         public static double Parameter, Origin_x, Origin_y, Scale_x, Scale_y, Rot_angle;
         
@@ -46,10 +46,10 @@ namespace Recursive_subroutine_program
 
         }
 
-        public static void DrawPixel(ulong x, ulong y)
-        {
-            Point point = new Point((int)x, (int)y);
-        }
+        //public static void DrawPixel(ulong x, ulong y)
+        //{
+          
+        //}
 
 
 
@@ -59,9 +59,9 @@ namespace Recursive_subroutine_program
             double Parameter;
             double x = 0.0, y = 0.0;
 
-            Control control = new Control();
-            Graphics formGraphics = control.CreateGraphics();
-
+            //Control control = new Control();
+            //Graphics formGraphics = control.CreateGraphics();
+            
             for (Parameter = Start; Parameter <= End; Parameter += Step)
             {
                 CalcCoord(HorPtr, VerPtr, ref x, ref y);

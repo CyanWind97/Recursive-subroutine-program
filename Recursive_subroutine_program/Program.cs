@@ -1,4 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Recursive_subroutine_program
 {
@@ -32,15 +36,20 @@ namespace Recursive_subroutine_program
             //            Console.WriteLine("____________________________________________");
             //            Common.CloseScanner();
             //            Console.ReadKey();
-        
+
             //实例化parser或者把Parser方法改成静态才能调用
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Common.form = new Form1();
             parser tParser = new parser();
             if (args.Length < 1)
             {
                 Console.WriteLine("Please input source File !\n");
                 return;
             }
-            tParser.Parser(args[0]);    
+            tParser.Parser(args[0]);
+            Application.Run(Common.form);
+            Console.ReadKey();
 
         }
     }

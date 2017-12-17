@@ -125,6 +125,7 @@ namespace Recursive_subroutine_program
         }
         */
 
+        public static Form1 form;
         #endregion
     }
 }
