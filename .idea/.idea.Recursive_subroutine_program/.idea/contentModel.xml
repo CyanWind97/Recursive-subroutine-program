@@ -17,6 +17,7 @@
         </e>
         <e p="Recursive_subroutine_program.csproj" t="IncludeRecursive" />
         <e p="Scanner.cs" t="Include" />
+        <e p="semantic.cs" t="Include" />
         <e p="Token.cs" t="Include" />
       </e>
       <e p="Recursive_subroutine_program.sln" t="IncludeFlat" />

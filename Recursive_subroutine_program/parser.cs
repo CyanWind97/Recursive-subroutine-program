@@ -149,7 +149,17 @@ namespace Recursive_subroutine_program
             MatchToken(Common.Token_Type.ORIGIN);
             MatchToken(Common.Token_Type.IS);
             MatchToken(Common.Token_Type.L_BRACKET);
+            
             tmp = Expression();
+            semantic.Origin_x = semantic.GetExprValue(tmp);
+            semantic.DelExprTree(tmp);
+            
+            MatchToken(Common.Token_Type.COMMA);
+            
+            tmp = Expression();
+            semantic.Origin_y = semantic.GetExprValue(tmp);
+            semantic.DelExprTree(tmp);
+            
             MatchToken(Common.Token_Type.R_BRACKET);
             Common.back("OriginStatement");
         }
@@ -162,7 +172,17 @@ namespace Recursive_subroutine_program
             MatchToken(Common.Token_Type.SCALE);
             MatchToken(Common.Token_Type.IS);
             MatchToken(Common.Token_Type.L_BRACKET);
+            
             tmp = Expression();
+            semantic.Scale_x = semantic.GetExprValue(tmp);
+            semantic.DelExprTree(tmp);
+            
+            MatchToken(Common.Token_Type.COMMA);
+
+            tmp = Expression();
+            semantic.Scale_y = semantic.GetExprValue(tmp);
+            semantic.DelExprTree(tmp);
+            
             MatchToken(Common.Token_Type.R_BRACKET);
             Common.back("ScaleStatement");
         }
@@ -174,26 +194,43 @@ namespace Recursive_subroutine_program
             Common.enter("RotStatement");
             MatchToken(Common.Token_Type.ROT);
             MatchToken(Common.Token_Type.IS);
+            
             tmp = Expression();
+            semantic.Rot_angle = semantic.GetExprValue(tmp);
+            semantic.DelExprTree(tmp);
+            
             Common.back("RotStatement");
         }
 
         //ForStatement的递归子程序
         static void ForStatement()
         {
-            ExprNode start, end, step, x, y;
+            double start, end, step;
+            ExprNode start_ptr, end_ptr, step_ptr, x, y;
             Common.enter("ForStatement");
             
             MatchToken(Common.Token_Type.FOR);
             MatchToken(Common.Token_Type.T);
             MatchToken(Common.Token_Type.FROM);
-            start = Expression();
+            
+            start_ptr = Expression();
+            start = semantic.GetExprValue(start_ptr);
+            semantic.DelExprTree(start_ptr);
+            
             MatchToken(Common.Token_Type.TO);
             Common.call_match("TO");
-            end = Expression();
+            
+            end_ptr = Expression();
+            end = semantic.GetExprValue(end_ptr);
+            semantic.DelExprTree(end_ptr);
+            
             MatchToken(Common.Token_Type.STEP);
             Common.call_match("STEP");
-            step = Expression();
+            
+            step_ptr = Expression();
+            step = semantic.GetExprValue(step_ptr);
+            semantic.DelExprTree(step_ptr);
+            
             MatchToken(Common.Token_Type.DRAW);
             Common.call_match("DRAW");
             MatchToken(Common.Token_Type.L_BRACKET);
@@ -204,6 +241,8 @@ namespace Recursive_subroutine_program
             y = Expression();
             MatchToken(Common.Token_Type.R_BRACKET);
             Common.call_match(")");
+            
+            semantic.DrawLoop(start, end, step, x, y);
             
             Common.back("ForStatement");
         }

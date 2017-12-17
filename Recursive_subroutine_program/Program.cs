@@ -32,9 +32,6 @@ namespace Recursive_subroutine_program
             //            Console.WriteLine("____________________________________________");
             //            Common.CloseScanner();
             //            Console.ReadKey();
-
-            string SrcFilePath;
-            string Name = "Complier";
         
             //实例化parser或者把Parser方法改成静态才能调用
             parser tParser = new parser();
