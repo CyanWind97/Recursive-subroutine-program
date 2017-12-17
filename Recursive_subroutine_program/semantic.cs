@@ -4,16 +4,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-//using Imsl.Chart2D;
+
+using System.Windows.Media;
+using LiveCharts;
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
 
 namespace Recursive_subroutine_program
 {
-    class semantic
+    class semantic 
     {
         public static double Parameter, Origin_x, Origin_y, Scale_x, Scale_y, Rot_angle;
-        public Point(int x, int y);
-        Graphics ground = CreateGraphics();
-
+        
         //计算表达式的值
         double GetExprValue(ExprNode root)
         {
@@ -44,10 +46,15 @@ namespace Recursive_subroutine_program
 
         }
 
-        void DrawPixel(ulong x, ulong y)
+        /*void DrawPixel(ulong x, ulong y)
         {
 
-        }
+        }*/
+
+
+           
+
+        
 
         //循环绘制点坐标
         void DrawLoop(double Start, double End, double Step, ExprNode HorPtr, ExprNode VerPtr)
@@ -108,6 +115,17 @@ namespace Recursive_subroutine_program
             //返回变换后点坐标
             Hor_x = HorCord;
             Ver_y = VerCord;
+        }
+
+        LiveCharts.SeriesCollection series = new LiveCharts.SeriesCollection
+        {
+            new ScatterSeries
+            {
+                Values = new ChartValues<ScatterPoint>
+                {
+                    new ScatterPoint(5, 5, 20);
+                };
+            }
         }
 
     }
