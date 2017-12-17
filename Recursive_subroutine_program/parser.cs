@@ -3,39 +3,6 @@ using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Runtime.InteropServices.ComTypes;
 
-//#if PARSER_DEBUG
-//#define enter(x) Console.WriteLine("enter in ");Console.WriteLine(x);Console.WriteLine("\n")
-//    else
-//#define enter(x)
-//#endif
-//
-//#if PARSER_DEBUG
-//#define back(x) Console.WriteLine("exit from  ");Console.WriteLine(x);Console.WriteLine("\n")
-//    else
-//#define back(x)
-//#endif
-//
-//#if PARSER_DEBUG
-//#define call_match(x) Console.WriteLine("matchtoken  ");Console.WriteLine(x);Console.WriteLine("\n")
-//    else
-//#define call_match(x)
-//#endif
-//
-//#if PARSER_DEBUG
-//#define Tree_trace(x) PrintSyntaxTree(x,1);
-//    else
-//#define Tree_trace
-//#endif
-//
-//#if PARSER_DEBUG
-//    double Parameter = 0;
-//    else
-//    double Paramete = 0,
-//    Origin_x = 0, Origin_y = 0,
-//    Scale_x = 1, Scale_y = 1,
-//    Rot_angele = 0;
-//#endif
-
 namespace Recursive_subroutine_program
 {
     public class parser
@@ -85,13 +52,6 @@ namespace Recursive_subroutine_program
         //打印错误信息
         static void ErrMsg(uint LineNo, string descrip, string str)
         {
-//#if PARSER_DEBUG
-//            Console.WriteLine("Line No " + LineNo + ":" + descrip + str);
-//#else
-//            string msg = "";
-//            Console.WriteLine(msg + "Line No " + LineNo + ":" + descrip + str);
-//#endif
-//            省略部分debug
             Common.CloseScanner();
 //            exit(1);
             return;
