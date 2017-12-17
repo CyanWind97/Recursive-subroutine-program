@@ -102,6 +102,28 @@ namespace Recursive_subroutine_program
 
         #region semantic part
 
+        //绘制一个点
+        public static void DrawPixel(ulong x, ulong y)
+        {
+
+        }
+        //获得表达式的值
+        public static double GetExprValue(ExprNode root)
+        {
+
+        }
+        //图形绘制
+        public static void DrawLoop(double Start, double End, double Step, ExprNode HorPtr, ExprNode VerPtr)
+        {
+
+        }
+        //删除树
+        public static void DelExprTree(ExprNode root)
+        {
+
+        }
+
+
         #endregion
     }
 }
