@@ -57,7 +57,7 @@ namespace Recursive_subroutine_program
         //循环绘制点坐标
         public void DrawLoop(double Start, double End, double Step, ExprNode HorPtr, ExprNode VerPtr)
         {
-            double x = 1.0, y = 1.0;
+            double x = 0.0, y = 0.0;
             //Control control = new Control();
             //Graphics formGraphics = control.CreateGraphics();
 
@@ -69,6 +69,7 @@ namespace Recursive_subroutine_program
                 //Console.WriteLine("\n" + "(" + x + "," + y + ")");
                 //DrawPixel((ulong)x, (ulong)y);
             }
+            Common.Parameter = 0.0;
         }
 
         //删除一棵语法树

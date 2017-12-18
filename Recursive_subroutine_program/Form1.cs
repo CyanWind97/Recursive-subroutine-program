@@ -27,7 +27,12 @@ namespace Recursive_subroutine_program
             {
                 new ScatterSeries
                 {
-                    Values = new ChartValues<ObservablePoint>(),
+                    Values = new ChartValues<ScatterPoint>
+                    {
+                        
+                    },
+                    MinPointShapeDiameter = 1,
+                    MaxPointShapeDiameter = 10
                     //PointGeometry = DefaultGeometries.Cross
                 }
             };
@@ -57,7 +62,7 @@ namespace Recursive_subroutine_program
 
             foreach(var series in Series1)
             {
-                series.Values.Add(new ObservablePoint(x, y));
+                series.Values.Add(new ScatterPoint(x, y, 1));
             }
            
         }
