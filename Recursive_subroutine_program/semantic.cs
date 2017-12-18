@@ -14,7 +14,7 @@ namespace Recursive_subroutine_program
 {
     unsafe public class semantic
     {
-        public static double Parameter, Origin_x, Origin_y, Scale_x, Scale_y, Rot_angle;
+        public static double Parameter, Origin_x = 0, Origin_y = 0, Scale_x = 1, Scale_y = 1, Rot_angle = 0;
         
         //计算表达式的值
         public static double GetExprValue(ExprNode root)
@@ -35,11 +35,12 @@ namespace Recursive_subroutine_program
                     return Math.Pow(GetExprValue(root.Left), GetExprValue(root.Right));
                 case Common.Token_Type.FUNC:
                     //return (root.MathFuncPtr)(GetExprValue(root.Child));
-                    return GetExprValue(root.Child);
+                    return root.MathFuncPtr(GetExprValue(root.Child));
                 case Common.Token_Type.CONST_ID:
                     return root.CaseConst;
                 case Common.Token_Type.T:
-                    return root.CaseParmPtr;
+                    //Console.WriteLine(root.CaseParmPtr());
+                    return root.CaseParmPtr();
                 default:
                     return 0.0;
             };
@@ -56,14 +57,13 @@ namespace Recursive_subroutine_program
         //循环绘制点坐标
         public void DrawLoop(double Start, double End, double Step, ExprNode HorPtr, ExprNode VerPtr)
         {
-            double Parameter;
             double x = 1.0, y = 1.0;
             //Control control = new Control();
             //Graphics formGraphics = control.CreateGraphics();
 
-            for (Parameter = Start; Parameter <= End; Parameter += Step)
+            for (Common.Parameter = Start; Common.Parameter <= End; Common.Parameter += Step)
             {
-                Common.TokenTab[2].value = Parameter;
+                //Console.WriteLine(Common.Parameter);
                 CalcCoord(HorPtr, VerPtr, ref x, ref y);
                 Common.form.DrawPoint(x, y);
                 //Console.WriteLine("\n" + "(" + x + "," + y + ")");
@@ -108,7 +108,7 @@ namespace Recursive_subroutine_program
             //计算表达式的值，得到点的原始坐标
             HorCord = semantic.GetExprValue(Hor_Exp);
             VerCord = semantic.GetExprValue(Ver_Exp);
-            //Console.WriteLine("\n" + "(" + HorCord + "," + VerCord + ")");
+            
             //进行比例变换
             HorCord *= Scale_x;
             VerCord *= Scale_y;
@@ -122,6 +122,7 @@ namespace Recursive_subroutine_program
             //返回变换后点坐标
             Hor_x = HorCord;
             Ver_y = VerCord;
+            //Console.WriteLine("\n" + "(" + Hor_x + "," + Ver_y + ")");
         }
 
         

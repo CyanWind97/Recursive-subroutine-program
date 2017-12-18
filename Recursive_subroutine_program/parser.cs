@@ -384,7 +384,7 @@ namespace Recursive_subroutine_program
                     break;
                 case Common.Token_Type.T:
                     // ExprPtr.CaseParmPtr = double.Parse((string)exprNodes[0]);// can find &Parameter in C#
-                    ExprPtr.CaseParmPtr = Common.TokenTab[2].value;
+                    ExprPtr.CaseParmPtr = Common.Change;
                     break;
                 case Common.Token_Type.FUNC:
                     ExprPtr.MathFuncPtr = (Common.FuncPtr) exprNodes[0];

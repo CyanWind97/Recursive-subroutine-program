@@ -22,6 +22,14 @@ namespace Recursive_subroutine_program
         };
 
         public delegate double FuncPtr(double a); //函数指针(代理)
+        public delegate double ParamPtr();
+
+        public static double Parameter = 0.0;
+
+        public static double Change()
+        {
+            return Common.Parameter;
+        }
 
         public static Token[] TokenTab =
         {
@@ -31,7 +39,7 @@ namespace Recursive_subroutine_program
             new Token( Token_Type.FUNC,     "SIN",      0.0,        Math.Sin),
             new Token( Token_Type.FUNC,     "COS",      0.0,        Math.Cos),
             new Token( Token_Type.FUNC,     "TAN",      0.0,        Math.Tan ),
-            new Token( Token_Type.FUNC,     "LN",       0.0,        Math.Log ),
+            new Token( Token_Type.FUNC,     "LN",       0.0,        Math.Log10 ),
             new Token( Token_Type.FUNC,     "EXP",      0.0,        Math.Exp ),
             new Token( Token_Type.FUNC,     "SQRT",     0.0,        Math.Sqrt),
             new Token( Token_Type.ORIGIN,   "ORIGIN",   0.0,        null ),

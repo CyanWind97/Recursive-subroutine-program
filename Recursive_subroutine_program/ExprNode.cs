@@ -11,7 +11,7 @@ namespace Recursive_subroutine_program
         public Common.FuncPtr MathFuncPtr;
 
         public double CaseConst;
-        public double CaseParmPtr;
+        public Common.ParamPtr CaseParmPtr;
 
         public ExprNode(){}
     }
