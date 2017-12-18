@@ -16,11 +16,31 @@ namespace Recursive_subroutine_program
     public partial class Form1 : Form
     {
         public Graphics g;
-     
+        private SeriesCollection Series1;
+
+
         public Form1()
         {
             InitializeComponent();
-            g = this.CreateGraphics();
+            Series1 = new SeriesCollection
+            {
+                new ScatterSeries
+                {
+                    Values = new ChartValues<ObservablePoint>()
+                }
+            };
+    }
+
+
+        public void DrawPoint(double x, double y)
+        {
+            cartesianChart1.Series = Series1;
+
+            foreach(var series in Series1)
+            {
+                series.Values.Add(new ObservablePoint(x, y));
+            }
+           
         }
     }
 }

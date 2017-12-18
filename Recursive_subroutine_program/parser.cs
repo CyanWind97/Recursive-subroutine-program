@@ -5,7 +5,7 @@ using System.Runtime.InteropServices.ComTypes;
 
 namespace Recursive_subroutine_program
 {
-    public class parser
+    unsafe public class parser
     {
         private static Token token;
 
@@ -67,15 +67,24 @@ namespace Recursive_subroutine_program
             }
             switch (root.OpCode)
             {
-                case Common.Token_Type.PLUS: Console.WriteLine("+\n");break;
-                case Common.Token_Type.MINUS:Console.WriteLine("-\n");break;
-                case Common.Token_Type.MUL:Console.WriteLine("*\n");break;
-                case Common.Token_Type.DIV:Console.WriteLine("/\n");break;
-                case Common.Token_Type.POWER:Console.WriteLine("**\n");break;
-                case Common.Token_Type.FUNC:Console.WriteLine(root.MathFuncPtr + "\n");break;
-                case Common.Token_Type.CONST_ID:Console.WriteLine(root.CaseConst + "\n");break;
-                case Common.Token_Type.T:Console.WriteLine("T\n");break;
-                default: Console.WriteLine("Error Tree Node!\n");break;
+                case Common.Token_Type.PLUS:Console.WriteLine("+\n");
+                    break;
+                case Common.Token_Type.MINUS:Console.WriteLine("-\n");
+                    break;
+                case Common.Token_Type.MUL:Console.WriteLine("*\n");
+                    break;
+                case Common.Token_Type.DIV:Console.WriteLine("/\n");
+                    break;
+                case Common.Token_Type.POWER:Console.WriteLine("**\n");
+                    break;
+                case Common.Token_Type.FUNC:Console.WriteLine(root.MathFuncPtr + "\n");
+                    break;
+                case Common.Token_Type.CONST_ID:Console.WriteLine(root.CaseConst + "\n");
+                    break;
+                case Common.Token_Type.T:Console.WriteLine("T\n");
+                    break;
+                default: Console.WriteLine("Error Tree Node!\n");
+                    break;
             }
             if (root.OpCode == Common.Token_Type.CONST_ID || root.OpCode == Common.Token_Type.T) //叶子节点返回
             {
@@ -241,8 +250,9 @@ namespace Recursive_subroutine_program
             y = Expression();
             MatchToken(Common.Token_Type.R_BRACKET);
             Common.call_match(")");
-            
-            semantic.DrawLoop(start, end, step, x, y);
+
+            semantic se = new semantic();
+            se.DrawLoop(start, end, step, x, y);
             
             Common.back("ForStatement");
         }
@@ -373,8 +383,8 @@ namespace Recursive_subroutine_program
                     ExprPtr.CaseConst = (double) exprNodes[0];
                     break;
                 case Common.Token_Type.T:
-                   // ExprPtr.CaseParmPtr = double.Parse((string)exprNodes[0]);// can find &Parameter in C#
-                    ExprPtr.CaseParmPtr = (double)exprNodes[0];
+                    // ExprPtr.CaseParmPtr = double.Parse((string)exprNodes[0]);// can find &Parameter in C#
+                    ExprPtr.CaseParmPtr = Common.TokenTab[2].value;
                     break;
                 case Common.Token_Type.FUNC:
                     ExprPtr.MathFuncPtr = (Common.FuncPtr) exprNodes[0];

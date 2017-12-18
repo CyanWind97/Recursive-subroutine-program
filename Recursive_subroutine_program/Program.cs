@@ -8,6 +8,7 @@ namespace Recursive_subroutine_program
 {
     class Program
     {
+        [STAThread]
         static void Main(string[] args) //通过命令行参数把test.txt的路径加入，否则在输入时可能会有一些bug
         {
             //            Token token = new Token();
@@ -49,7 +50,6 @@ namespace Recursive_subroutine_program
             }
             tParser.Parser(args[0]);
             Application.Run(Common.form);
-            Console.ReadKey();
 
         }
     }

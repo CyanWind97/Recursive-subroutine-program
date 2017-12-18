@@ -12,7 +12,7 @@ using LiveCharts.Wpf;
 
 namespace Recursive_subroutine_program
 {
-    public static class semantic
+    unsafe public class semantic
     {
         public static double Parameter, Origin_x, Origin_y, Scale_x, Scale_y, Rot_angle;
         
@@ -54,18 +54,20 @@ namespace Recursive_subroutine_program
 
 
         //循环绘制点坐标
-        public static void DrawLoop(double Start, double End, double Step, ExprNode HorPtr, ExprNode VerPtr)
+        public void DrawLoop(double Start, double End, double Step, ExprNode HorPtr, ExprNode VerPtr)
         {
             double Parameter;
-            double x = 0.0, y = 0.0;
-
+            double x = 1.0, y = 1.0;
             //Control control = new Control();
             //Graphics formGraphics = control.CreateGraphics();
-            
+
             for (Parameter = Start; Parameter <= End; Parameter += Step)
             {
+                Common.TokenTab[2].value = Parameter;
                 CalcCoord(HorPtr, VerPtr, ref x, ref y);
-                DrawPixel((ulong)x, (ulong)y);
+                Common.form.DrawPoint(x, y);
+                //Console.WriteLine("\n" + "(" + x + "," + y + ")");
+                //DrawPixel((ulong)x, (ulong)y);
             }
         }
 
@@ -104,8 +106,9 @@ namespace Recursive_subroutine_program
         {
             double HorCord, VerCord, Hor_tmp;
             //计算表达式的值，得到点的原始坐标
-            HorCord = GetExprValue(Hor_Exp);
-            VerCord = GetExprValue(Ver_Exp);
+            HorCord = semantic.GetExprValue(Hor_Exp);
+            VerCord = semantic.GetExprValue(Ver_Exp);
+            //Console.WriteLine("\n" + "(" + HorCord + "," + VerCord + ")");
             //进行比例变换
             HorCord *= Scale_x;
             VerCord *= Scale_y;

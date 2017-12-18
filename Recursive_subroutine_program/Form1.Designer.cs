@@ -53,6 +53,6 @@
 
         #endregion
 
-        public LiveCharts.WinForms.CartesianChart cartesianChart1;
+        private LiveCharts.WinForms.CartesianChart cartesianChart1;
     }
 }
