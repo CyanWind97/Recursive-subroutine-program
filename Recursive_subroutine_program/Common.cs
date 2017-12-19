@@ -7,50 +7,43 @@ namespace Recursive_subroutine_program
     {
         #region scanner part
 
-        // 记号的类别，共22个
-        public enum Token_Type                 
-        {
-            ORIGIN, SCALE, ROT, IS,         // 保留字（一字一码）
-            TO, STEP, DRAW, FOR, FROM,      // 保留字
-            T,                              // 参数
-            SEMICO, L_BRACKET, R_BRACKET, COMMA,    // 分隔符
-            PLUS, MINUS, MUL, DIV, POWER,           // 运算符
-            FUNC,                 // 函数（调用）
-            CONST_ID,             // 常数
-            NONTOKEN,             // 空记号（源程序结束）
-            ERRTOKEN              // 出错记号（非法输入）
-        };
-
         public delegate double FuncPtr(double a); //函数指针(代理)
-        public delegate double ParamPtr();
 
-        public static double Parameter = 0.0;
-
-        public static double Change()
+        // 记号的类别，共22个
+        public enum TokenType                 
         {
-            return Common.Parameter;
+            Origin, Scale, Rot, Is,         // 保留字（一字一码）
+            To, Step, Draw, For, From,      // 保留字
+            T,                              // 参数
+            Semico, LBracket, RBracket, Comma,    // 分隔符
+            Plus, Minus, Mul, Div, Power,           // 运算符
+            Func,                 // 函数（调用）
+            ConstId,             // 常数
+            Nontoken,             // 空记号（源程序结束）
+            Errtoken              // 出错记号（非法输入）
         }
 
+        //记录关键字的符号表
         public static Token[] TokenTab =
         {
-            new Token( Token_Type.CONST_ID, "PI",       3.1415926,  null),
-            new Token( Token_Type.CONST_ID, "E",        2.71828,    null ),
-            new Token( Token_Type.T,        "T",        0.0,        null ),
-            new Token( Token_Type.FUNC,     "SIN",      0.0,        Math.Sin),
-            new Token( Token_Type.FUNC,     "COS",      0.0,        Math.Cos),
-            new Token( Token_Type.FUNC,     "TAN",      0.0,        Math.Tan),
-            new Token( Token_Type.FUNC,     "LN",       0.0,        Math.Log10),
-            new Token( Token_Type.FUNC,     "EXP",      0.0,        Math.Exp),
-            new Token( Token_Type.FUNC,     "SQRT",     0.0,        Math.Sqrt),
-            new Token( Token_Type.ORIGIN,   "ORIGIN",   0.0,        null ),
-            new Token( Token_Type.SCALE,    "SCALE",    0.0,        null ),
-            new Token( Token_Type.ROT,      "ROT",      0.0,        null ),
-            new Token( Token_Type.IS,       "IS",       0.0,        null ),
-            new Token( Token_Type.FOR,      "FOR",      0.0,        null ),
-            new Token( Token_Type.FROM,     "FROM",     0.0,        null ),
-            new Token( Token_Type.TO,       "TO",       0.0,        null ),
-            new Token( Token_Type.STEP,     "STEP",     0.0,        null ),
-            new Token( Token_Type.DRAW,     "DRAW",     0.0,        null )
+            new Token( TokenType.ConstId, "PI",       3.1415926,  null),
+            new Token( TokenType.ConstId, "E",        2.71828,    null ),
+            new Token( TokenType.T,        "T",        0.0,        null ),
+            new Token( TokenType.Func,     "SIN",      0.0,        Math.Sin),
+            new Token( TokenType.Func,     "COS",      0.0,        Math.Cos),
+            new Token( TokenType.Func,     "TAN",      0.0,        Math.Tan),
+            new Token( TokenType.Func,     "LN",       0.0,        Math.Log10),
+            new Token( TokenType.Func,     "EXP",      0.0,        Math.Exp),
+            new Token( TokenType.Func,     "SQRT",     0.0,        Math.Sqrt),
+            new Token( TokenType.Origin,   "ORIGIN",   0.0,        null ),
+            new Token( TokenType.Scale,    "SCALE",    0.0,        null ),
+            new Token( TokenType.Rot,      "ROT",      0.0,        null ),
+            new Token( TokenType.Is,       "IS",       0.0,        null ),
+            new Token( TokenType.For,      "FOR",      0.0,        null ),
+            new Token( TokenType.From,     "FROM",     0.0,        null ),
+            new Token( TokenType.To,       "TO",       0.0,        null ),
+            new Token( TokenType.Step,     "STEP",     0.0,        null ),
+            new Token( TokenType.Draw,     "DRAW",     0.0,        null )
         };
 
         public static uint LineNo;                 //跟踪记号所在源文件行号
@@ -87,53 +80,48 @@ namespace Recursive_subroutine_program
 
         #region parser part
 
-        public static void enter(string x)
+        //控制台输出，监视语法树过程
+        public static void Enter(string x)
         {
-            Console.WriteLine("Enter in " + x + "\n");
-        }
-        public static void back(string x)
-        {
-            Console.WriteLine("Exit from " + x + "\n");
+            Console.WriteLine(@"Enter in " + x);
         }
 
+        //控制台输出，监视语法树过程
+        public static void Back(string x)
+        {
+            Console.WriteLine(@"Exit from " + x);
+        }
+
+        //输出语法树结构
         public static void Tree_trace(ExprNode x)
         {
-            parser.PrintSyntaxTree(x,1);
+            Parser.PrintSyntaxTree(x,1);
         }
 
+        //输出匹配结果
         public static void call_match(string x)
         {
-            Console.WriteLine("matchtoken    " + x + "\n");
+            Console.WriteLine(@"matchtoken    " + x);
         }
+
+        
+        public delegate double ParamPtr();      //用于实现参数T边值的委托
 
         #endregion
 
         #region semantic part
 
-        /*
-        //绘制一个点
-        public static void DrawPixel(ulong x, ulong y)
+        
+        public static double Parameter = 0.0;       //画图时的参数
+
+        //调用参数T时，返回当前Parameter的值
+        public static double Change()
         {
-
+            return Parameter;
         }
-        //获得表达式的值
-        public static double GetExprValue(ExprNode root)
-        {
 
-        }
-        //图形绘制
-        public static void DrawLoop(double Start, double End, double Step, ExprNode HorPtr, ExprNode VerPtr)
-        {
+        public static Form1 Form;
 
-        }
-        //删除树
-        public static void DelExprTree(ExprNode root)
-        {
-
-        }
-        */
-
-        public static Form1 form;
         #endregion
     }
 }

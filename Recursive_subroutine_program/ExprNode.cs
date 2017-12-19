@@ -1,10 +1,8 @@
-﻿using System.Security.Policy;
-
-namespace Recursive_subroutine_program
+﻿namespace Recursive_subroutine_program
 {
     public class ExprNode
     {
-        public Common.Token_Type OpCode;
+        public Common.TokenType OpCode;
         public ExprNode Left;
         public ExprNode Right;
         public ExprNode Child;
@@ -12,8 +10,6 @@ namespace Recursive_subroutine_program
 
         public double CaseConst;
         public Common.ParamPtr CaseParmPtr;
-
-        public ExprNode(){}
     }
     
 }
