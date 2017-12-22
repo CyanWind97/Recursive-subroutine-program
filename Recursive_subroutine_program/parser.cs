@@ -252,7 +252,7 @@ namespace Recursive_subroutine_program
         {
             Common.Enter("Expression");
             ExprNode left = Term();
-            while (_token.Type == Common.TokenType.Plus || _token.Type == Common.TokenType.Div)
+            while (_token.Type == Common.TokenType.Plus || _token.Type == Common.TokenType.Minus)
             {
                 Common.TokenType tokenTmp = _token.Type;
                 MatchToken(tokenTmp);
